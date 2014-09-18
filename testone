@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="http://cdn.leaflet.js.com/leaflet-0.7.3/leaflet.css"/>
+  <script src="http://cdn.leaflet.js.com/leaflet-0.7.3/leaflet.js></script>
+  <meta charset="utf-8">
+  <tile>Testone</title>
+</head>
+<body>
+  <div id="map"></div>
+</body>
+</html>
