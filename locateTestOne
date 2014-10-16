@@ -1,5 +1,5 @@
 <html><head>
-    <title>I am trying to locate you</title>
+    <title>Locate</title>
     <meta charset="utf-8">
     <meta content="width=device-width,initial-scale=1.0" name="viewport">
 
@@ -41,7 +41,7 @@
 <script src="./assets/L.Control.Locate.js"></script>
 
 <script>
-  var map = L.map('map').setView([40.7685,-73.9647], 15);
+  var map = L.map('map').setView([40.7685,-73.9647], 12);
 </script>
 
 <script src="./assets/leaflet/leaflet.js"></script>
