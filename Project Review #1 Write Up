@@ -1,0 +1,22 @@
+Location Based Services
+Project Review #1 Write Up
+Group: Ross Condon, Mimi Hatzis, Hilda Cardenas
+WhatsupNYC: https://github.com/webapplication785 
+	As previously discussed, the purpose of this group project titled, WhatsupNYC, is to create a web application for tourists and New Yorkers interested in locating different places within Manhattan. The web app will function through the utilization of location. Once the location of the user is recognized and criteria are chosen, the web app will respond with a list of places. Since places of interest are based on location, the places closest to an individual’s location would appear in the list first.
+	The group project has been divided into four main sections which will be discussed in greater detail. These main parts focus on the map, data, interface, and functionality. The first part, our map, is a major part of the web application because our web application is based primarily on location. This section of the project is designated to all of us. So far, each of us has used a leaflet script example to create our own map. We are able to focus in on the area of NYC, but what is left to do is to possibly customize the map further. This shows how the map appears on a web page. 
+ 
+	The following part of the project is the data and will be done by Mimi. There are a number of steps involved in this part of the project. For example, research must be done to figure out where the available data can be found. For this project, the data should include museums, theaters, natural parks, movie locations, restaurants, and possibly subway station entrances. The data should be downloaded in either shapefile or KMZ format which will then be massaged. Since, we have chosen to focus mainly on Manhattan, the data should be lessened. Once the data is downloaded, it should be converted to a GeoJSON format using either the QGIS software or the geojson.io webpage. Following this, more research must be done in order to figure out how to input the data into the map as well as how to display the data correctly. It would be great if the data did not show unless asked to be displayed through the search command.
+	The next section is the interface which is designated to Hilda. For this section, she will focus on inserting HTML components such as the search, current location, clickable list/dropdown menu, and map pins. 
+	Lastly, functionality is the final part of the project and is designated to Ross. He will focus on making the command tools in the interface section function. 
+	In the PowerPoint, there is a timeline that describes when certain parts of our sections should be completed along with the name of the individual completing it. We would like to have the project completed by the next Project Review that way we can spend the rest of the semester testing the web application and fixing any issues or errors that may come up.
+Data	Goals
+Oct 16	Project Review #1
+Oct 23	HTML Components: Personalize a base map and styling  (all)
+Oct 30	Research/develop HTML/CSS components to incorporate to map (Hilda); APIs: Confirm Locate Function on web; Explore mobile locate(Ross); find and download data as shapefile or KMZ to massage data; after massaging the data convert it to accurate format, GeoJSON (Mimi)
+Nov 6	Incorporation of components: Explore search functions (Hilda); input data into web application (Mimi)
+Nov 13	Web App Execution: Confirm search function (Hilda); Explore FindMe (Ross); customize the symbology of the data (Mimi)
+Nov 20	Project Review #2
+Dec 4	User Testing: Test app on mobile device (all)
+Dec 11	Fix any issues or errors (all)
+Dec 18	Final Project Presentations
+	There are some potential issues that may arise and so we have come up with some Plan B’s in case they do arise. For example, if collecting and re-formatting the data is too time consuming, the number of options may change to 3 or 4 rather than 6. As well, if implementing our own feature data proves to be unsuccessful, or unwieldy, or anything else, we could work on implementing the OSM Nominatim search tool within the app to possible search and return features.
