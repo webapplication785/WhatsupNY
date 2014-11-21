@@ -1,0 +1,284 @@
+<html><head>
+<title>WhatsupNYC</title>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0" name="viewport">
+<link rel="stylesheet" href="./assets/leaflet/leaflet-0.7.3/leaflet.css">
+</head>
+<body>
+
+
+</head>
+<body>
+
+
+
+
+
+
+
+
+<!-- Search bar included to map-->
+	<div class="leaflet-control-mapbox-geocoder leaflet-bar leaflet-control active">
+  <a class="leaflet-control-mapbox-geocoder-toggle mapbox-icon mapbox-icon-geocoder" href="#">&nbsp;</a>
+  <div class="leaflet-control-mapbox-geocoder-results">
+  </div>
+  <div class="leaflet-control-mapbox-geocoder-wrap">
+  <form class="leaflet-control-mapbox-geocoder-form">
+    <input class="" type="text" placeholder="Search">
+  </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<div id="map" style="width: 100%; height: 80%; position: relative;" class="leaflet-container leaflet-fade-anim" tabindex="0"></div>
+
+</div>
+
+
+
+
+
+<!-- here we can place a list div, but we have to figure out how to fill it-->
+
+<div id="featuresList" style="height: 20%; display:block; background:#bdfcc9">
+dis is a list someday</div>
+
+<!-- now to the script!-->
+
+
+
+
+
+<script src="./assets/jquery-1.11.1.js"></script>
+<script src="./assets/leaflet/leaflet-0.7.3/leaflet.js"></script>
+
+<script>
+
+// This Line calls the map function from leaflet.js
+var map = L.map('map').setView([40.7127, -74.0059], 13);
+
+//Calling base tile layer from leaflet.jsc
+L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+maxZoom: 18,
+attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+id: 'examples.map-i875mjb7'
+}).addTo(map);
+
+// These lines tell the map what to do when the location is succesfull or there is an error 
+function onLocationFound(e) {
+
+	var radius = e.accuracy/2;
+
+	L.marker(e.latlng).addTo(map)
+		.bindPopup("You are possibly maybe somewhere within this circle").openPopup();
+
+	L.circle(e.latlng, radius).addTo(map);
+}
+
+function onLocationError(e) {
+	alert(e.message);
+}
+
+map.on('locationfound', onLocationFound);
+map.on('locationerror', onLocationError);
+
+
+
+
+
+
+
+// THEATERS This is a jquery lines to tell the javascript where to find the geojson file in our GeoGSON folder, this one is using the Manhattan theaters file
+$.ajax({
+dataType: "json",
+url: "./GeoJSON/Manhattan_Theaters.geojson",
+success: function(data) {
+	$(data.features).each(function(key, data) {
+		theaters_nyc.addData(data);
+	});
+}
+}).error(function() {});
+
+// These lines call a geoJson layer to the map using leaflet.js
+// medium blue
+var theaterMarker = {
+	radius: 7,
+	fillColor: "#0000CD",
+	color: "#0000CD",
+	weight: 1,
+	opacity: 1,
+	fillOpcacity: 1,
+};
+
+var theaters_nyc = L.geoJson(theaters_nyc, {
+	pointToLayer: function (feature, latlng) {
+		return L.circleMarker(latlng, theaterMarker);
+	},
+	onEachFeature: function (feature, layer) {
+		layer.bindPopup(feature.properties.NAME + "<br>" + feature.
+			properties.TEL + "<br>" + feature.properties.ADDRESS1 + "<br>" + 
+				feature.properties.URL);
+	}
+}).addTo(map);
+
+
+
+
+
+
+
+// MUSEUMS This is a jquery lines to tell the javascript where to find the geojson file in our GeoGSON folder, this one is using the Manhattan theaters file
+$.ajax({
+dataType: "json",
+url: "./GeoJSON/Manhattan_Museums.geojson",
+success: function(data) {
+	$(data.features).each(function(key, data) {
+		museums_nyc.addData(data);
+	});
+}
+}).error(function() {});
+
+// These lines call a geoJson layer to the map using leaflet.js
+// dark violet
+var museumMarker = {
+	radius: 7,
+	fillColor: "#9400D3",
+	color: "#9400D3",
+	weight: 1,
+	opacity: 1,
+	fillOpcacity: 1,
+};
+
+var museums_nyc = L.geoJson(museums_nyc, {
+	pointToLayer: function (feature, latlng) {
+		return L.circleMarker(latlng, museumMarker);
+	},
+	onEachFeature: function (feature, layer) {
+		layer.bindPopup(feature.properties.NAME + "<br>" + feature.
+			properties.TEL + "<br>" + feature.properties.ADRESS1 + "<br>" + 
+				feature.properties.URL);
+	}
+}).addTo(map);
+
+
+
+
+
+
+
+// WIFI This is a jquery lines to tell the javascript where to find the geojson file in our GeoGSON folder, this one is using the Manhattan theaters file
+$.ajax({
+dataType: "json",
+url: "./GeoJSON/Manhattan_WIFI.geojson",
+success: function(data) {
+	$(data.features).each(function(key, data) {
+		wifi_nyc.addData(data);
+	});
+}
+}).error(function() {});
+
+// These lines call a geoJson layer to the map using leaflet.js
+// orange
+var wifiMarker = {
+	radius: 7,
+	fillColor: "#00FFFF",
+	color: "#00FFFF",
+	weight: 1,
+	opacity: 1,
+	fillOpcacity: 1,
+};
+
+var wifi_nyc = L.geoJson(wifi_nyc, {
+	pointToLayer: function (feature, latlng) {
+		return L.circleMarker(latlng, wifiMarker);
+	},
+	onEachFeature: function (feature, layer) {
+		layer.bindPopup(feature.properties.Provider + "<br>" + feature.properties.Type 
+		+ "<br>" + feature.properties.Location);
+	}
+}).addTo(map);
+
+
+
+
+
+
+
+// SUBWAY STATIONS This is a jquery lines to tell the javascript where to find the geojson file in our GeoGSON folder, this one is using the Manhattan theaters file
+$.ajax({
+dataType: "json",
+url: "./GeoJSON/Manhattan_SubwayStations.geojson",
+success: function(data) {
+	$(data.features).each(function(key, data) {
+		subwaystations_nyc.addData(data);
+	});
+}
+}).error(function() {});
+
+// These lines call a geoJson layer to the map using leaflet.js
+//cyan
+var subwaystationsMarker = {
+	radius: 7,
+	fillColor: "#ffa500",
+	color: "#ffa500",
+	weight: 1,
+	opacity: 1,
+	fillOpcacity: 1,
+};
+
+var subwaystations_nyc = L.geoJson(subwaystations_nyc, {
+	pointToLayer: function (feature, latlng) {
+		return L.circleMarker(latlng, subwaystationsMarker);
+	},
+	onEachFeature: function (feature, layer) {
+		layer.bindPopup(feature.properties.NAME + "<br>" + 
+			feature.properties.LINE + " Train" + "<br>" + feature.properties.URL);
+	}
+}).addTo(map);
+
+
+
+
+
+// PARKS This is a jquery lines to tell the javascript where to find the geojson file in our GeoGSON folder, this one is using the Manhattan theaters file
+$.ajax({
+dataType: "json",
+url: "./GeoJSON/Manhattan_Parks.geojson",
+success: function(data) {
+	$(data.features).each(function(key, data) {
+		parks_nyc.addData(data);
+	});
+}
+}).error(function() {});
+
+// These lines call a geoJson layer to the map using leaflet.js
+var parks_nyc = L.geoJson(parks_nyc, {
+    style: function (feature) {
+        return {color: feature.properties.color};
+    },
+    onEachFeature: function (feature, layer) {
+		layer.bindPopup(feature.properties.PARK_NAME + "<br>" + "Type: " +
+			feature.properties.LANDUSE);
+	}
+}).addTo(map);
+
+
+
+
+
+// This line is the locate function of leaflet.js
+map.locate({setView: true, maxZoom: 16})
+
+
+</script>
+
+</body></html>
